@@ -1,0 +1,72 @@
+
+<html>
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Advanced HTML5 Form</title>   
+</head>
+<body>
+    <header>
+        <h1> Registration Form </h1>
+    </header> 
+
+<form id="registrationForm">
+<label for="fullName"> Full Name </label>
+<input type="text" id="fullName"  name="fullName" required>
+
+<label for="email">Email:</label>
+<input type="email" id="email" name="email" required>
+
+<label for="password">Password (min. 8 characters):</label>
+<input type="password" id="password" name="password" minlength="8" required>
+
+<label for="confirmPassword">Confirm Password:</label>
+<input type="password" id="confirmPassword" name="confirmPassword" minlength="8" required>
+
+<label for="birthdate">Birthdate:</label>
+<input type="date" id="birthdate" name="birthdate" required>
+
+<label for="gender">Gender:</label>
+<select id="gender" name="gender" required>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+</select>
+
+ <label>
+            <input type="checkbox" id="agreeToTerms" name="agreeToTerms" required>
+            Agree to Terms
+        </label>
+
+        <button type="submit">Submit</button>
+
+</form>
+<script>
+    // JavaScript to confirm password match and validate birthdate
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var birthdate = new Date(document.getElementById("birthdate").value);
+        var currentDate = new Date();
+
+        // Check if password and confirm password match
+        if (password !== confirmPassword) {
+            alert("Password and Confirm Password must match.");
+            event.preventDefault(); // Prevent form submission
+            return;
+        }
+
+        // Check if birthdate is valid (not in the future)
+        if (birthdate > currentDate) {
+            alert("Invalid birthdate. Please select a date in the past.");
+            event.preventDefault(); // Prevent form submission
+            return;
+        }
+    });
+</script>
+
+    
+</body>
+
+ </html>
